@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plain HTML with Scroller</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background: rgb(16, 60, 84);
+      }
+
+      .main-image {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 90vh;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+      }
+
+      .scroller-container {
+        position: fixed;
+        bottom: 15px;
+        left: 0;
+        right: 0;
+        background: transparent;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 1rem;
+      }
+
+      .scroller-item {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 250px;
+        min-height: 120px;
+        margin-right: 1rem;
+        padding: 1rem;
+        background: linear-gradient(to right, #3b82f6, #6366f1);
+        border-radius: 0.75rem;
+        color: white;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .scroller-item:hover {
+        transform: scale(1.05);
+      }
+
+      .scroller-item a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+
+      .scroller-item a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-image">
+      <img
+        src="image_one.jpeg"
+        alt="Main Image"
+        style="max-width: 100%; max-height: 80vh"
+      />
+    </div>
+
+    <div class="scroller-container" id="scroller">
+      <!-- Items will be populated by JS -->
+    </div>
+
+    <script>
+      const items = [
+        { title: "Guard retention", link: "https://example.com/portfolio" },
+        { title: "coming soon", link: "https://example.com/about" },
+        { title: "coming soon", link: "https://example.com/services" },
+        { title: "coming soon", link: "https://example.com/contact" },
+      ];
+
+      const scroller = document.getElementById("scroller");
+      items.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "scroller-item";
+        div.innerHTML = `
+          <a href="${item.link}" target="_blank">${item.title}</a>
+        `;
+        scroller.appendChild(div);
+      });
+    </script>
+  </body>
+</html>
